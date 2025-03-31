@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EzSplit - Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="settings-container">
+        <header>
+            <h1><i class="fas fa-cog"></i> Settings</h1>
+        </header>
+        <main>
+            <section class="settings-form">
+                <div class="avatar-preview">
+                    <img id="avatar-image" src="https://img-baofun.zhhainiao.com/pcwallpaper_ugc_mobile/static/f038836922ac498447f72d887df3bdaa.jpg" alt="Avatar">
+                </div>
+                <form id="user-settings">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" value="current_username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" placeholder="Leave blank to keep current password">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" value="current_email">
+                    </div>
+                    <div class="form-group">
+                        <label for="avatar">Avatar:</label>
+                        <input type="file" id="avatar" accept="image/*">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="save-btn"><i class="fas fa-save"></i> Save</button>
+                        <button type="button" class="cancel-btn"><i class="fas fa-times"></i> Cancel</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const avatarInput = document.getElementById('avatar');
+            const avatarImage = document.getElementById('avatar-image');
+
+            avatarInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        avatarImage.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    avatarImage.src = 'default-avatar.png'; // Revert to default if no file selected
+                }
+            });
+        });
+    </script>
+</body>
+</html>
